@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	// + Jump
 	private const float BASE_JUMP_FORCE	= 8.0f;
-	private const float JUMP_COOLDOWN	= 0.1f;
+	private const float JUMP_COOLDOWN	= 0.2f;
 
 	// + Dash
 	private const float DASH_FORCE		= 45.0f;
@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 	// Camera
 	private const float X_SENSITIVITY	= 1.5f;
 	private const float Y_SENSITIVITY	= 1.5f;
-	private const float MIN_Y			= 300.0f;
-	private const float MAX_Y			= 60.0f;
+	private const float MIN_Y			= 280.0f;
+	private const float MAX_Y			= 80.0f;
 
 
 	// Miscellaneous
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float xz_friction 			= 1.0f; // 0 max, 1 min
 
+	private bool is_grounded 			= false; // Different if starting on the ground?
 
 	// Use this for initialization
 	void Start () {
@@ -60,17 +61,26 @@ public class PlayerMovement : MonoBehaviour {
 		UpdatePosition();
 	}
 
+	void OnCollisionStay (Collision collisionInfo) {
+		int counter = 0;
 
+		foreach (ContactPoint c in collisionInfo.contacts) {
+			if (Vector3.up == c.normal) {
+				is_grounded = true;
+				break;
+			}
+		}
+	}
+
+	void OnCollisionExit () {
+		is_grounded = false;
+	}
+		
 	void UpdatePosition () {
 		float	input_x	 = Input.GetAxisRaw("Horizontal");
 		bool	input_y	 = Input.GetKey("space");
 		float	input_z	 = Input.GetAxisRaw("Vertical");
 
-		bool is_grounded =	Physics.Raycast (transform.position - new Vector3 (0.3f, 0.0f,  0.125f), -Vector3.up, 0.1f + 0.95f) &&
-		                   	Physics.Raycast (transform.position + new Vector3 (0.3f, 0.0f,  0.125f), -Vector3.up, 0.1f + 0.95f) &&
-		                   	Physics.Raycast (transform.position - new Vector3 (0.3f, 0.0f, -0.125f), -Vector3.up, 0.1f + 0.95f) &&
-		                   	Physics.Raycast (transform.position + new Vector3 (0.3f, 0.0f, -0.125f), -Vector3.up, 0.1f + 0.95f);
-		
 		// Jump
 		if (input_y && (Time.time - last_jump_start > JUMP_COOLDOWN) && is_grounded) {
 			xz_friction = 0.95f;
@@ -187,7 +197,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	void FixedUpdate () {
 		// Manual friction
-		rb.velocity = new Vector3(xz_friction * rb.velocity.x, 1.0f * rb.velocity.y, xz_friction * rb.velocity.z);
+		int mult_x = (Mathf.Abs(rb.velocity.x) > 5) ? 1 : 0;
+		int mult_z = (Mathf.Abs(rb.velocity.z) > 5) ? 1 : 0;
+		rb.velocity = new Vector3(xz_friction * rb.velocity.x * mult_x, 1.0f * rb.velocity.y, xz_friction * rb.velocity.z * mult_z);
 	}
 
 }
