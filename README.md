@@ -4,10 +4,11 @@ Projet de semestre pour l'UE de moteur de jeu 3d.
 
 ## TODO
 - split screen
+- niveau de test
 
 ## DONE
 - mouvement de base
-- sauts boostés
+- sauts boostÃ©s
 - dash
 
 ## BUGS
