@@ -14,8 +14,6 @@ public class PlayerMovement : MonoBehaviour {
 	private const float FORWARD_SPEED 	= 1.0f * SPEED;
 	private const float SIDEWARD_SPEED 	= 0.9f * SPEED;
 
-	// + Strafe
-
 	// + Jump
 	private const float BASE_JUMP_FORCE	= 8.0f;
 	private const float JUMP_COOLDOWN	= 0.2f;
@@ -46,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float xz_friction 			= 1.0f; // 0 max, 1 min
 
-	private bool is_grounded 			= false; // Different if starting on the ground?
+	private bool is_grounded 			= false;
 
 	// Use this for initialization
 	void Start () {
@@ -60,10 +58,8 @@ public class PlayerMovement : MonoBehaviour {
 		UpdateCamera();
 		UpdatePosition();
 	}
-
+		
 	void OnCollisionStay (Collision collisionInfo) {
-		int counter = 0;
-
 		foreach (ContactPoint c in collisionInfo.contacts) {
 			if (Vector3.up == c.normal) {
 				is_grounded = true;
@@ -71,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 	}
-
+		
 	void OnCollisionExit () {
 		is_grounded = false;
 	}
