@@ -6,6 +6,8 @@ A la base prévu comme un FPS, finalement probablement plus un jeu de réflexion
 
 @mbty, @ymtr
 
+![Test level on a buggy day](https://i.imgur.com/T03RJMf.gifv)
+
 ## TODO
 - niveau de test
 - possibilité de quitter le niveau en se jetant contre une colonne
