@@ -1,7 +1,10 @@
-﻿# ProjetIDK
+# ProjetIDK
 
 Projet de semestre pour l'UE de moteur de jeu 3d.
+
 A la base prévu comme un FPS, finalement probablement plus un jeu de réflexion.
+
+@mbty, @ymtr
 
 ## TODO
 - niveau de test
