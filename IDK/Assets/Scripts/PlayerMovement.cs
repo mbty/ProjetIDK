@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Player
 	// + Speed
-	private const float SPEED 			= 8.0f;
+	private const float SPEED 			= 18.0f;
 	private const float FORWARD_SPEED 	= 1.0f * SPEED;
-	private const float SIDEWARD_SPEED 	= 0.9f * SPEED;
+	public float SIDEWARD_SPEED 		= 0.9f * SPEED; // is used to reverse right
 
 	// + Jump
 	private const float BASE_JUMP_FORCE	= 8.0f;
@@ -28,9 +28,46 @@ public class PlayerMovement : MonoBehaviour {
 	private const float MIN_Y			= 280.0f;
 	private const float MAX_Y			= 80.0f;
 
+	// Fighting
+	// I would use classes if I wasn't this lazy
+	// Remove?
+	private const float RAYCAST_RANGE	= 100.0f;
+
+	private const float PISTOL_COOLDOWN	= 0.8f;
+	private const int	PISTOL_DAMAGE	= 5;
+	private const float PISTOL_FORCE	= 1.0f;
+
+	private const float HAND_COOLDOWN	= 0.8f;
+	private const float HAND_DAMAGE 	= 1.0f;
+	private const float HAND_FORCE		= 1.0f;
+	private const float HAND_RANGE		= 1.0f;
+
+	private const float SWORD_COOLDOWN	= 0.8f;
+	private const float SWORD_DAMAGE 	= 1.0f;
+	private const float SWORD_FORCE		= 1.0f;
+	private const float SWORD_RANGE		= 1.0f;
+
+	private const float CARBINE_COOLDOWN= 0.8f;
+	private const float CARBINE_DAMAGE 	= 1.0f;
+	private const float CARBINE_FORCE	= 1.0f;
+
+	private const float RIFLE_COOLDOWN	= 0.8f;
+	private const float RIFLE_DAMAGE 	= 1.0f;
+	private const float RIFLE_FORCE		= 1.0f;
+
+	private const float GRENADE_COOLDOWN= 0.8f;
+	private const float GRENADE_DAMAGE 	= 1.0f;
+	private const float GRENADE_FORCE	= 1.0f;
+	private const float GRENADE_RADIUS	= 1.0f;
+
+	private const float RPG_COOLDOWN	= 0.8f;
+	private const float RPG_DAMAGE		= 1.0f;
+	private const float RPG_FORCE		= 1.0f;
+	private const float RPG_RADIUS		= 1.0f;
 
 	// Miscellaneous
-	enum Direction {None, Forward, Backward, Left, Right};
+	enum Direction 	{None, Forward, Backward, Left, Right};
+	enum Weapon 	{Hand, Sword, Pistol, Carbine, Rifle, Grenade, RPG};
 
 	// State
 	private float last_jump_start;
@@ -46,17 +83,22 @@ public class PlayerMovement : MonoBehaviour {
 
 	private bool is_grounded 			= false;
 
+	// Fighting
+	private float pistol_last;
+
 	// Use this for initialization
 	void Start () {
 		last_jump_start 	= Time.time - 2 * JUMP_COOLDOWN;
 		previous_down 		= Time.time - 2 * SHORT_INPUT;
 		current_down 		= Time.time - 2 * SHORT_INPUT;
+		pistol_last 		= Time.time - 2 * PISTOL_COOLDOWN;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		UpdateCamera();
 		UpdatePosition();
+		UpdateAction();
 	}
 		
 	void OnCollisionStay (Collision collisionInfo) {
@@ -94,7 +136,7 @@ public class PlayerMovement : MonoBehaviour {
 		 * ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 		 * 
 		 * To change the control scheme to "when any two short inputs in under DASH_LIMIT, dash in the direction of the last key pressed",
-		 * change the second ifs to else ifs in the single key pressed management blocks
+		 * change the second ifs to else ifs in the single key pressed management blocks.
 		 */ 
 		if (input_x > 0 && input_z == 0) {
 			if (dash_previous == Direction.None) {
@@ -189,6 +231,28 @@ public class PlayerMovement : MonoBehaviour {
 			
 		}
 		cm.transform.eulerAngles = cm.transform.eulerAngles - new Vector3(y_movement, 0, 0);
+	}
+
+	void UpdateAction() {
+		bool input_mouse_1 = Input.GetButtonDown ("Fire1");
+
+		if (input_mouse_1) {
+			pistol_last = Time.time;
+
+			RaycastHit hit;
+			if (Physics.Raycast (cm.transform.position + 1.5f * cm.transform.forward, cm.transform.forward, out hit, RAYCAST_RANGE)) {
+				Debug.Log ("pan");
+
+				//Debug.Ray (hit.transform.name);	
+
+				Vilain vilain = (Vilain)hit.transform.GetComponent<Vilain> ();
+				if (vilain != null) {
+					Debug.Log ("touché");
+					vilain.TakeDamage (PISTOL_DAMAGE, PISTOL_FORCE, cm.transform.forward);
+				}
+			}
+		}
+
 	}
 
 	void FixedUpdate () {

@@ -51,8 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\CameraRight.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\RescaleRenderTexture.cs" />
+     <Compile Include="Assets\Scripts\RotationSlab.cs" />
+     <Compile Include="Assets\Scripts\Vilain.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/windows/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
