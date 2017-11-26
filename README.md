@@ -6,7 +6,7 @@ A la base prévu comme un FPS, finalement probablement plus un jeu de réflexion
 
 @mbty, @ymtr
 
-![Test level on a buggy day](https://i.imgur.com/T03RJMf.gifv)
+![Test level on a buggy day](https://i.imgur.com/T03RJMf.gif)
 
 ## TODO
 - niveau de test
