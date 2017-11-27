@@ -19,10 +19,13 @@ public class PlayerMovement : MonoBehaviour {
 	private const float DASH_FORCE		= 100.0f;
 	private const float DASH_LIMIT	 	= 0.4f;
 	// Camera
-	private const float X_SENSITIVITY	= 1.5f;
-	private const float Y_SENSITIVITY	= 1.5f;
-	private const float MIN_Y			= 280.0f;
-	private const float MAX_Y			= 80.0f;
+	//private const float X_SENSITIVITY	= 1.5f;
+	//private const float Y_SENSITIVITY	= 1.5f;
+	//private const float MIN_Y			= 280.0f;
+	//private const float MAX_Y			= 80.0f;
+
+	private const float TURN_SPEED = 1.5f;
+	float yawInput=0f;
 	// Miscellaneous
 	enum Direction 	{None, Forward, Backward, Left, Right};
 	// Gun (the interpolation functions for loading/force applied in terms of impact distance are harcoded)
@@ -172,7 +175,7 @@ public class PlayerMovement : MonoBehaviour {
 		rb.MovePosition (transform.position + mvt);
 	}
 
-	void UpdateCamera () {
+	/*void UpdateCamera () {
 		float input_x = Input.GetAxis("Mouse X");
 		float input_y = Input.GetAxis("Mouse Y");
 
@@ -191,7 +194,13 @@ public class PlayerMovement : MonoBehaviour {
 			
 		}
 		cm.transform.eulerAngles = cm.transform.eulerAngles - new Vector3(y_movement, 0, 0);
+	}*/
+	void UpdateCamera () {
+		yawInput += Input.GetAxis("Mouse X") * TURN_SPEED;
+		yawInput = yawInput%360;
+		transform.localEulerAngles = new Vector3 (0, -yawInput, 0);
 	}
+
 
 	void UpdateAction() {
 		bool input_mouse_1_down = Input.GetKeyDown (KeyCode.Mouse0);
