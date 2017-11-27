@@ -6,5 +6,6 @@ public class RescaleRenderTexture : MonoBehaviour {
 	void Start () {
 		rt.width  = Screen.width;
 		rt.height = Screen.height;
+		Cursor.lockState = CursorLockMode.Locked; 
 	}
 }

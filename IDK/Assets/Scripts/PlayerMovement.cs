@@ -6,101 +6,61 @@ public class PlayerMovement : MonoBehaviour {
 	public Rigidbody rb;
 	public Camera cm;
 
+	// CONSTANTS
 	private const float SHORT_INPUT 	= 0.15f;
-
-	// Player
-	// + Speed
+	// Run
 	private const float SPEED 			= 18.0f;
 	private const float FORWARD_SPEED 	= 1.0f * SPEED;
-	public float SIDEWARD_SPEED 		= 0.9f * SPEED; // is used to reverse right
-
-	// + Jump
+	private const float SIDEWARD_SPEED 	= 0.9f * SPEED;
+	// Jump
 	private const float BASE_JUMP_FORCE	= 8.0f;
 	private const float JUMP_COOLDOWN	= 0.2f;
-
-	// + Dash
-	private const float DASH_FORCE		= 45.0f;
+	// Dash
+	private const float DASH_FORCE		= 100.0f;
 	private const float DASH_LIMIT	 	= 0.4f;
-
 	// Camera
 	private const float X_SENSITIVITY	= 1.5f;
 	private const float Y_SENSITIVITY	= 1.5f;
 	private const float MIN_Y			= 280.0f;
 	private const float MAX_Y			= 80.0f;
-
-	// Fighting
-	// I would use classes if I wasn't this lazy
-	// Remove?
-	private const float RAYCAST_RANGE	= 100.0f;
-
-	private const float PISTOL_COOLDOWN	= 0.8f;
-	private const int	PISTOL_DAMAGE	= 5;
-	private const float PISTOL_FORCE	= 1.0f;
-
-	private const float HAND_COOLDOWN	= 0.8f;
-	private const float HAND_DAMAGE 	= 1.0f;
-	private const float HAND_FORCE		= 1.0f;
-	private const float HAND_RANGE		= 1.0f;
-
-	private const float SWORD_COOLDOWN	= 0.8f;
-	private const float SWORD_DAMAGE 	= 1.0f;
-	private const float SWORD_FORCE		= 1.0f;
-	private const float SWORD_RANGE		= 1.0f;
-
-	private const float CARBINE_COOLDOWN= 0.8f;
-	private const float CARBINE_DAMAGE 	= 1.0f;
-	private const float CARBINE_FORCE	= 1.0f;
-
-	private const float RIFLE_COOLDOWN	= 0.8f;
-	private const float RIFLE_DAMAGE 	= 1.0f;
-	private const float RIFLE_FORCE		= 1.0f;
-
-	private const float GRENADE_COOLDOWN= 0.8f;
-	private const float GRENADE_DAMAGE 	= 1.0f;
-	private const float GRENADE_FORCE	= 1.0f;
-	private const float GRENADE_RADIUS	= 1.0f;
-
-	private const float RPG_COOLDOWN	= 0.8f;
-	private const float RPG_DAMAGE		= 1.0f;
-	private const float RPG_FORCE		= 1.0f;
-	private const float RPG_RADIUS		= 1.0f;
-
 	// Miscellaneous
 	enum Direction 	{None, Forward, Backward, Left, Right};
-	enum Weapon 	{Hand, Sword, Pistol, Carbine, Rifle, Grenade, RPG};
+	// Gun (the interpolation functions for loading/force applied in terms of impact distance are harcoded)
+	private const float GUN_COOLDOWN 	= 0.1f;
+	private const float GUN_MAX_FORCE	= 25.0f;
+	private const float GUN_MIN_FORCE	= 5.0f;
+	private const float GUN_LOAD_TIME	= 1.0f;
+	private const float RAYCAST_RANGE	= 7.0f;
 
-	// State
+	// STATE
+	// jump
 	private float last_jump_start;
-
+	// dash
 	private float last_dash;
 	private Direction dash_direction	= Direction.Forward;
 	private Direction dash_previous		= Direction.None;
 	private int dash_state			 	= 0;
 	private float previous_down;
 	private float current_down;
-
+	// physics
 	private float xz_friction 			= 1.0f; // 0 max, 1 min
-
+	// state
 	private bool is_grounded 			= false;
+	// gun
+	private float gun_start;			// set la première fois?
 
-	// Fighting
-	private float pistol_last;
-
-	// Use this for initialization
 	void Start () {
 		last_jump_start 	= Time.time - 2 * JUMP_COOLDOWN;
 		previous_down 		= Time.time - 2 * SHORT_INPUT;
 		current_down 		= Time.time - 2 * SHORT_INPUT;
-		pistol_last 		= Time.time - 2 * PISTOL_COOLDOWN;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		UpdateCamera();
 		UpdatePosition();
 		UpdateAction();
 	}
-		
+
 	void OnCollisionStay (Collision collisionInfo) {
 		foreach (ContactPoint c in collisionInfo.contacts) {
 			if (Vector3.up == c.normal) {
@@ -234,25 +194,31 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void UpdateAction() {
-		bool input_mouse_1 = Input.GetButtonDown ("Fire1");
+		bool input_mouse_1_down = Input.GetKeyDown (KeyCode.Mouse0);
+		bool input_mouse_1_up	= Input.GetKeyUp (KeyCode.Mouse0);
 
-		if (input_mouse_1) {
-			pistol_last = Time.time;
 
-			RaycastHit hit;
-			if (Physics.Raycast (cm.transform.position + 1.5f * cm.transform.forward, cm.transform.forward, out hit, RAYCAST_RANGE)) {
-				Debug.Log ("pan");
-
-				//Debug.Ray (hit.transform.name);	
-
-				Vilain vilain = (Vilain)hit.transform.GetComponent<Vilain> ();
-				if (vilain != null) {
-					Debug.Log ("touché");
-					vilain.TakeDamage (PISTOL_DAMAGE, PISTOL_FORCE, cm.transform.forward);
-				}
-			}
+		if (input_mouse_1_down) {
+			gun_start = Time.time;
 		}
 
+		if (input_mouse_1_up) {
+			RaycastHit hit;
+			if (Physics.Raycast (cm.transform.position + 1.5f * cm.transform.forward, cm.transform.forward, out hit, RAYCAST_RANGE)) { // Magic variable to remove
+				if (Time.time - gun_start > GUN_LOAD_TIME)
+					gun_start = Time.time - GUN_LOAD_TIME;
+
+				// float coeff_angle		= Vector3.Dot (cm.transform.forward, hit.normal);
+				float coeff_distance 	= 1 - (hit.distance / RAYCAST_RANGE);
+				float coeff_loading		= (Time.time - gun_start) / GUN_LOAD_TIME;
+
+				if (hit.distance < 2.0f)
+					coeff_distance = 1.0f;
+
+				Vector3 force = (GUN_MIN_FORCE + (GUN_MAX_FORCE - GUN_MIN_FORCE) * coeff_loading) * coeff_distance * -cm.transform.forward;
+				rb.AddForce(force, ForceMode.Impulse);
+			}
+		}
 	}
 
 	void FixedUpdate () {
