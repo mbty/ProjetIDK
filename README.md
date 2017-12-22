@@ -15,10 +15,10 @@ A la base prévu comme un FPS, finalement probablement plus un jeu de réflexion
 Le niveau de test actuel n'inclut pas le mécanisme d'écran partagé présenté dans le second gif ci-dessus. 
 
 ## TODO
-- possibilité de quitter le niveau en se jetant contre une colonne
 - méchanisme de vérification de la synchronisation
 - respawn/changement de niveau
 - importation MOOM
+- ~~possibilité de quitter le niveau en se jetant contre une colonne~~
 - ~~nettoyage~~
 - ~~niveau de test~~
 - ~~split screen~~
