@@ -51,12 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ActionSlab.cs" />
-     <Compile Include="Assets\Scripts\Door.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\RescaleRenderTexture.cs" />
-     <Compile Include="Assets\Scripts\Vilain.cs" />
-     <Compile Include="Assets\Scripts\Wall.cs" />
+     <Compile Include="Assets\Scripts\_Shared\ActionSlab.cs" />
+     <Compile Include="Assets\Scripts\_Shared\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\FPS\Vilain.cs" />
+     <Compile Include="Assets\Scripts\SplitScreen\RescaleRenderTexture.cs" />
+     <Compile Include="Assets\Scripts\Teleporters\Switch.cs" />
+     <Compile Include="Assets\Scripts\Teleporters\SwitchBlocker.cs" />
+     <Compile Include="Assets\Scripts\Teleporters\Teleporter.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/windows/unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
