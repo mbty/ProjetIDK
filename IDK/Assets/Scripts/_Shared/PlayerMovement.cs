@@ -9,11 +9,11 @@ public class PlayerMovement : MonoBehaviour {
 	// CONSTANTS
 	private const float SHORT_INPUT		= 0.15f;
 	// Run
-	private const float SPEED			= 18.0f;
+	private const float SPEED			= 9.0f;
 	private const float FORWARD_SPEED	= 1.0f * SPEED;
 	private const float SIDEWARD_SPEED	= 0.9f * SPEED;
 	// Jump
-	private const float BASE_JUMP_FORCE	= 8.0f;
+	private const float BASE_JUMP_FORCE	= 6.0f;
 	private const float JUMP_COOLDOWN	= 0.2f;
 	// Dash
 	private const float DASH_FORCE		= 100.0f;
@@ -99,42 +99,17 @@ public class PlayerMovement : MonoBehaviour {
 		 *                                                                                                                               
 		 * 
 		 * To change the control scheme to "when any two short inputs in under DASH_LIMIT, dash in the direction of the last key pressed",
-		 * change the second ifs to else ifs in the single key pressed management blocks.
+		 * change the second ifs to else ifs in the UpdateDashState function.
 		 */ 
 
-		// TODO @mbty refactor
-		if (input_x > 0 && input_z == 0) {
-			if (dash_previous == Direction.None) {
-				current_down = Time.time;
-				dash_previous = Direction.Right;
-			}
-			if (dash_direction != Direction.Right)
-				dash_state = 0;
-			dash_direction = dash_previous;
-		} else if (input_x < 0 && input_z == 0) {
-			if (dash_previous == Direction.None) {
-				current_down = Time.time;
-				dash_previous = Direction.Left;
-			} 
-			if (dash_direction != Direction.Left)
-				dash_state = 0;
-			dash_direction = dash_previous;
-		} else if (input_x == 0 && input_z > 0) {
-			if (dash_previous == Direction.None) {
-				current_down = Time.time;
-				dash_previous = Direction.Forward;
-			}
-			if (dash_direction != Direction.Forward)
-				dash_state = 0;
-			dash_direction = dash_previous;
-		} else if (input_x == 0 && input_z < 0) {
-			if (dash_previous == Direction.None) {
-				current_down = Time.time;
-				dash_previous = Direction.Backward;
-			}
-			if (dash_direction != Direction.Backward)
-				dash_state = 0;
-			dash_direction = dash_previous;
+		if (input_x > 0 && input_z == 0)
+			UpdateDashState (Direction.Right);
+		else if (input_x < 0 && input_z == 0)
+			UpdateDashState (Direction.Left);
+		else if (input_x == 0 && input_z > 0)
+			UpdateDashState (Direction.Forward);
+		else if (input_x == 0 && input_z < 0) {
+			UpdateDashState (Direction.Backward);
 		} else if (input_x == 0 && input_z == 0) {
 			if (dash_previous != Direction.None) {
 				if (Time.time - current_down < SHORT_INPUT) {
@@ -161,7 +136,6 @@ public class PlayerMovement : MonoBehaviour {
 						} else
 							--dash_state;
 					}
-
 					previous_down = current_down;
 				}
 				dash_previous = Direction.None;
@@ -175,6 +149,17 @@ public class PlayerMovement : MonoBehaviour {
 		else
 			mvt = input_z * transform.forward * FORWARD_SPEED * Time.deltaTime * 0.8f + input_x * transform.right * SIDEWARD_SPEED * Time.deltaTime * 0.8f;
 		rb.MovePosition (transform.position + mvt);
+	}
+
+	// used in the dash section of the misnamed updatePosition function
+	void UpdateDashState(Direction d) {
+		if (dash_previous == Direction.None) {
+			current_down = Time.time;
+			dash_previous = d;
+		}
+		if (dash_direction != d)
+			dash_state = 0;
+		dash_direction = dash_previous;
 	}
 
 	// TODO @mbty comment physics

@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwitchBlocker : MonoBehaviour {
-	public Switch wall;
+	public Switch master;
 
 	void OnBecameVisible () {
-		wall.inc_counter();
+		master.inc_counter();
 	}
 
 	void OnBecameInvisible () {
-		wall.dec_counter();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		master.dec_counter();
 	}
 }
