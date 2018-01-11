@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/MultiScreen.unity
+- path: Assets/Scenes/Teleporters.unity
   isLoaded: 1
   isActive: 1

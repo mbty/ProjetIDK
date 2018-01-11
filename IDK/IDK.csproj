@@ -287,12 +287,20 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\_Shared\ActionSlab.cs" />
     <Compile Include="Assets\Scripts\_Shared\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\_Shared\Portal.cs" />
+    <Compile Include="Assets\Scripts\Electronics\ElectronicsMaster.cs" />
+    <Compile Include="Assets\Scripts\Electronics\ElectronicsPortal.cs" />
+    <Compile Include="Assets\Scripts\Electronics\ElectronicsPressurePlate.cs" />
+    <Compile Include="Assets\Scripts\Electronics\RoomIn.cs" />
+    <Compile Include="Assets\Scripts\Electronics\RoomOut.cs" />
     <Compile Include="Assets\Scripts\FPS\Vilain.cs" />
     <Compile Include="Assets\Scripts\MultiScreen\MultiScreen.cs" />
     <Compile Include="Assets\Scripts\MultiScreen\PlayerMovementMultiScreen.cs" />
     <Compile Include="Assets\Scripts\MultiScreen\PressurePlateMultiScreen.cs" />
     <Compile Include="Assets\Scripts\MultiScreen\SlidingBlockMultiScreen.cs" />
     <Compile Include="Assets\Scripts\SplitScreen\RescaleRenderTexture.cs" />
+    <Compile Include="Assets\Scripts\Teleporters\ActionSlab.cs" />
+    <Compile Include="Assets\Scripts\Teleporters\ActionSlab1.cs" />
     <Compile Include="Assets\Scripts\Teleporters\PlayerMovementInverted.cs" />
     <Compile Include="Assets\Scripts\Teleporters\Switch.cs" />
     <Compile Include="Assets\Scripts\Teleporters\SwitchBlocker.cs" />

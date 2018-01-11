@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: 62d3540ea286b6046a2609b2109062ea
+timeCreated: 1515674120
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: MooMv4_0_3ByRamtin:browInKeyL
+    100004: MooMv4_0_3ByRamtin:browInKeyR
+    100006: MooMv4_0_3ByRamtin:browKeyL
+    100008: MooMv4_0_3ByRamtin:browKeyR
+    100010: MooMv4_0_3ByRamtin:browMidKeyL
+    100012: MooMv4_0_3ByRamtin:browMidKeyR
+    100014: MooMv4_0_3ByRamtin:browOutKeyL
+    100016: MooMv4_0_3ByRamtin:browOutKeyR
+    100018: MooMv4_0_3ByRamtin:cheekKeyL
+    100020: MooMv4_0_3ByRamtin:cheekKeyLFrame
+    100022: MooMv4_0_3ByRamtin:cheekKeyR
+    100024: MooMv4_0_3ByRamtin:cheekKeyRFrame
+    100026: MooMv4_0_3ByRamtin:downerEyelidKeyL
+    100028: MooMv4_0_3ByRamtin:downerEyelidKeyR
+    100030: MooMv4_0_3ByRamtin:downerLipLKey
+    100032: MooMv4_0_3ByRamtin:downerLipLKeyFrame
+    100034: MooMv4_0_3ByRamtin:downerLipMidKey
+    100036: MooMv4_0_3ByRamtin:downerLipMidKeyFrame
+    100038: MooMv4_0_3ByRamtin:downerLipRKey
+    100040: MooMv4_0_3ByRamtin:downerLipRKeyFrame
+    100042: MooMv4_0_3ByRamtin:eyeBrowLFrame01
+    100044: MooMv4_0_3ByRamtin:eyeBrowLFrame02
+    100046: MooMv4_0_3ByRamtin:eyeBrowLFrame03
+    100048: MooMv4_0_3ByRamtin:eyeBrowRFrame01
+    100050: MooMv4_0_3ByRamtin:eyeBrowRFrame02
+    100052: MooMv4_0_3ByRamtin:eyeBrowRFrame03
+    100054: MooMv4_0_3ByRamtin:eyeKeyL
+    100056: MooMv4_0_3ByRamtin:eyeKeyR
+    100058: MooMv4_0_3ByRamtin:eyePupilKeyL
+    100060: MooMv4_0_3ByRamtin:eyePupilKeyR
+    100062: MooMv4_0_3ByRamtin:faceSettingControl
+    100064: MooMv4_0_3ByRamtin:facialAllGroup
+    100066: MooMv4_0_3ByRamtin:facialControlsGroup
+    100068: MooMv4_0_3ByRamtin:facialFrame
+    100070: MooMv4_0_3ByRamtin:jawKey
+    100072: MooMv4_0_3ByRamtin:jawSSKey
+    100074: MooMv4_0_3ByRamtin:lipLKey
+    100076: MooMv4_0_3ByRamtin:lipLKeyFrame
+    100078: MooMv4_0_3ByRamtin:lipMidKey
+    100080: MooMv4_0_3ByRamtin:lipMidKeyFrame
+    100082: MooMv4_0_3ByRamtin:lipRKey
+    100084: MooMv4_0_3ByRamtin:lipRKeyFrame
+    100086: MooMv4_0_3ByRamtin:moomV4
+    100088: MooMv4_0_3ByRamtin:settingFrame
+    100090: MooMv4_0_3ByRamtin:toungBendKey
+    100092: MooMv4_0_3ByRamtin:toungFrontFrame
+    100094: MooMv4_0_3ByRamtin:toungSideFrame
+    100096: MooMv4_0_3ByRamtin:tounLengthKey
+    100098: MooMv4_0_3ByRamtin:upperEyelidKeyL
+    100100: MooMv4_0_3ByRamtin:upperEyelidKeyR
+    100102: MooMv4_0_3ByRamtin:upperHeadSSKey
+    100104: MooMv4_0_3ByRamtin:upperLipLKey
+    100106: MooMv4_0_3ByRamtin:upperLipLKeyFrame
+    100108: MooMv4_0_3ByRamtin:upperLipMidKey
+    100110: MooMv4_0_3ByRamtin:upperLipMidKeyFrame
+    100112: MooMv4_0_3ByRamtin:upperLipRKey
+    100114: MooMv4_0_3ByRamtin:upperLipRKeyFrame
+    400000: //RootNode
+    400002: MooMv4_0_3ByRamtin:browInKeyL
+    400004: MooMv4_0_3ByRamtin:browInKeyR
+    400006: MooMv4_0_3ByRamtin:browKeyL
+    400008: MooMv4_0_3ByRamtin:browKeyR
+    400010: MooMv4_0_3ByRamtin:browMidKeyL
+    400012: MooMv4_0_3ByRamtin:browMidKeyR
+    400014: MooMv4_0_3ByRamtin:browOutKeyL
+    400016: MooMv4_0_3ByRamtin:browOutKeyR
+    400018: MooMv4_0_3ByRamtin:cheekKeyL
+    400020: MooMv4_0_3ByRamtin:cheekKeyLFrame
+    400022: MooMv4_0_3ByRamtin:cheekKeyR
+    400024: MooMv4_0_3ByRamtin:cheekKeyRFrame
+    400026: MooMv4_0_3ByRamtin:downerEyelidKeyL
+    400028: MooMv4_0_3ByRamtin:downerEyelidKeyR
+    400030: MooMv4_0_3ByRamtin:downerLipLKey
+    400032: MooMv4_0_3ByRamtin:downerLipLKeyFrame
+    400034: MooMv4_0_3ByRamtin:downerLipMidKey
+    400036: MooMv4_0_3ByRamtin:downerLipMidKeyFrame
+    400038: MooMv4_0_3ByRamtin:downerLipRKey
+    400040: MooMv4_0_3ByRamtin:downerLipRKeyFrame
+    400042: MooMv4_0_3ByRamtin:eyeBrowLFrame01
+    400044: MooMv4_0_3ByRamtin:eyeBrowLFrame02
+    400046: MooMv4_0_3ByRamtin:eyeBrowLFrame03
+    400048: MooMv4_0_3ByRamtin:eyeBrowRFrame01
+    400050: MooMv4_0_3ByRamtin:eyeBrowRFrame02
+    400052: MooMv4_0_3ByRamtin:eyeBrowRFrame03
+    400054: MooMv4_0_3ByRamtin:eyeKeyL
+    400056: MooMv4_0_3ByRamtin:eyeKeyR
+    400058: MooMv4_0_3ByRamtin:eyePupilKeyL
+    400060: MooMv4_0_3ByRamtin:eyePupilKeyR
+    400062: MooMv4_0_3ByRamtin:faceSettingControl
+    400064: MooMv4_0_3ByRamtin:facialAllGroup
+    400066: MooMv4_0_3ByRamtin:facialControlsGroup
+    400068: MooMv4_0_3ByRamtin:facialFrame
+    400070: MooMv4_0_3ByRamtin:jawKey
+    400072: MooMv4_0_3ByRamtin:jawSSKey
+    400074: MooMv4_0_3ByRamtin:lipLKey
+    400076: MooMv4_0_3ByRamtin:lipLKeyFrame
+    400078: MooMv4_0_3ByRamtin:lipMidKey
+    400080: MooMv4_0_3ByRamtin:lipMidKeyFrame
+    400082: MooMv4_0_3ByRamtin:lipRKey
+    400084: MooMv4_0_3ByRamtin:lipRKeyFrame
+    400086: MooMv4_0_3ByRamtin:moomV4
+    400088: MooMv4_0_3ByRamtin:settingFrame
+    400090: MooMv4_0_3ByRamtin:toungBendKey
+    400092: MooMv4_0_3ByRamtin:toungFrontFrame
+    400094: MooMv4_0_3ByRamtin:toungSideFrame
+    400096: MooMv4_0_3ByRamtin:tounLengthKey
+    400098: MooMv4_0_3ByRamtin:upperEyelidKeyL
+    400100: MooMv4_0_3ByRamtin:upperEyelidKeyR
+    400102: MooMv4_0_3ByRamtin:upperHeadSSKey
+    400104: MooMv4_0_3ByRamtin:upperLipLKey
+    400106: MooMv4_0_3ByRamtin:upperLipLKeyFrame
+    400108: MooMv4_0_3ByRamtin:upperLipMidKey
+    400110: MooMv4_0_3ByRamtin:upperLipMidKeyFrame
+    400112: MooMv4_0_3ByRamtin:upperLipRKey
+    400114: MooMv4_0_3ByRamtin:upperLipRKeyFrame
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
