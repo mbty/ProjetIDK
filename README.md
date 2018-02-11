@@ -12,18 +12,4 @@ A la base prévu comme un FPS, finalement probablement plus un jeu de réflexion
 
 ## Note
 
-Le niveau de test actuel n'inclut pas le mécanisme d'écran partagé présenté dans le second gif ci-dessus. 
-
-## TODO
-- méchanisme de vérification de la synchronisation
-- respawn/changement de niveau
-- importation MOOM
-- ~~possibilité de quitter le niveau en se jetant contre une colonne~~
-- ~~nettoyage~~
-- ~~niveau de test~~
-- ~~split screen~~
-- ~~mouvement de base~~
-- ~~sauts boostés~~
-- ~~dash~~
-- ~~is_grounded ment dans certains cas~~
-- ~~friction horizontale des rigidbodies problématique~~
+Not the latest version, I'll update this repository one day. Maybe.
